@@ -270,7 +270,7 @@ static void MX_GPIO_Init(void)
 
 /* USER CODE BEGIN 4 */
 int counter = 50;		//50 ms to switch 7 seg led
-int idx_led = 0;			//index to turn on 7 seg led
+int idx_led = 0;		//index to turn on 7 seg led
 int dot_blink = 100;	//Blink dot every second
 
 void HAL_TIM_PeriodElapsedCallback ( TIM_HandleTypeDef * htim )
