@@ -1,0 +1,13 @@
+#ignore all kind of files
+*
+#except files
+!*.c
+!*.h
+
+!*.gitignore
+
+# ...even if they are in subdirectories
+!*/
+
+.metadata/
+*/Drivers/*
