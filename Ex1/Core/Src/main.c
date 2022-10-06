@@ -100,6 +100,7 @@ void display7SEG (int counter){
 	  		break;
 	  }
 }
+
 /* USER CODE END 0 */
 
 /**
