@@ -180,6 +180,21 @@ void updateLEDMatrix(int index){
 	//Set data signal but also keep other I/O port unchanged
 	GPIOB->BSRR = (matrix_buffer[index]) << 24;
 }
+
+//Capture the bit that's shifted out
+int lostBitWhenShift(uint8_t data){
+	uint8_t tmp = data;
+	return ((tmp <<= 1) >> 1) != data;
+}
+
+void shiftLeftMatrix(){
+	for (int i = 0; i < MAX_LED_MATRIX; i++) {
+		int lostBit = lostBitWhenShift(matrix_buffer[i]);
+		matrix_buffer[i]  <<= 1;
+		//Add lost bit to the end of current buffer
+		matrix_buffer[i] |= lostBit;
+	}
+}
 /* USER CODE END 0 */
 
 /**
@@ -235,6 +250,7 @@ int main(void)
 		  }
 		  updateClockBuffer();
 		  HAL_GPIO_TogglePin(GPIOA, DOT_Pin);
+		  shiftLeftMatrix();
 		  setTimer0(1000);
 	  }
 
